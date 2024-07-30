@@ -10,7 +10,6 @@ def sync_directories(args):
     rsync_cmd = f"rsync -avz -e 'sshpass -p {args.passwd} ssh -o StrictHostKeyChecking=no' {args.user}@{args.ip}:{args.licor_dir} {args.local_dir}"
     try:
         subprocess.run(rsync_cmd, shell=True, check=True)
-        logging.info(f"Synchronization from {args.licor_dir} to {args.local_dir} completed.")
     except subprocess.CalledProcessError as e:
         logging.error(f"Synchronization failed: {e}")
 
